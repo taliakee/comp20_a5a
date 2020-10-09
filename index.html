@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Joe's Hotdog Stand</title>
+    </head>
+    <body>
+        <script>
+            function findSubtotal(h, f, d){
+                return (3.25 * h) + (2 * f) + (1.5 * d)
+            }
+
+            function writeThree(h, f, d){
+                document.write("<p> " + h + "<br/>" + f + "<br/>" + d + "<p/>")
+            }
+
+            function takeOrder(){
+                var hotdogs = prompt("How many hotdogs?", 1)
+                var fries = prompt("How many fries?", 1)
+                var drinks = prompt("How many drinks?", 1)
+
+                var hLine = "# Hotdogs: " + hotdogs + " at $3.25 is $" + (3.25 * hotdogs).toFixed(2)
+                var fLine = "# Fries: " + fries + " at $2.00 is $" + (2.00 * fries).toFixed(2)
+                var dLine = "# Drinks: " + drinks + " at $1.50 is $" + (1.50 * drinks).toFixed(2)
+
+                writeThree(hLine, fLine, dLine)
+                
+                var subtotal = findSubtotal(hotdogs, fries, drinks)
+                if (subtotal >= 20){
+                    document.write("You qualified for our 10% discount")
+                    subtotal =  Math.ceil(subtotal * 0.9 * 100 ) / 100
+                }
+
+                var tax = Math.ceil(subtotal * 0.0625 * 100) / 100 
+                var total = subtotal + tax
+
+                var sub = "Subtotal: $" + subtotal.toFixed(2)
+                var mealtax = "Meals Tax: $" + tax.toFixed(2)
+                var theTotal = "Total: $" + total.toFixed(2)
+
+                writeThree(sub, mealtax, theTotal)
+            }
+        </script>
+        <h1>Welcome to Joe's Hotdogs!</h1>
+        <h2>Your Order</h2>
+        <script>
+            takeOrder()
+        </script>
+    </body>
+</html>
